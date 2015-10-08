@@ -1,0 +1,17 @@
+c:\users\vyshakh.babji\documents\visual studio 2015\Projects\ConsoleApplication1\ConsoleApplication1\bin\Debug\ConsoleApplication1.exe.config
+c:\users\vyshakh.babji\documents\visual studio 2015\Projects\ConsoleApplication1\ConsoleApplication1\bin\Debug\ConsoleApplication1.exe
+c:\users\vyshakh.babji\documents\visual studio 2015\Projects\ConsoleApplication1\ConsoleApplication1\bin\Debug\ConsoleApplication1.pdb
+c:\users\vyshakh.babji\documents\visual studio 2015\Projects\ConsoleApplication1\ConsoleApplication1\bin\Debug\Newtonsoft.Json.dll
+c:\users\vyshakh.babji\documents\visual studio 2015\Projects\ConsoleApplication1\ConsoleApplication1\bin\Debug\RingCentral.dll
+c:\users\vyshakh.babji\documents\visual studio 2015\Projects\ConsoleApplication1\ConsoleApplication1\bin\Debug\RingCentral.NET40.dll
+c:\users\vyshakh.babji\documents\visual studio 2015\Projects\ConsoleApplication1\ConsoleApplication1\bin\Debug\System.Net.Http.Extensions.dll
+c:\users\vyshakh.babji\documents\visual studio 2015\Projects\ConsoleApplication1\ConsoleApplication1\bin\Debug\System.Net.Http.Primitives.dll
+c:\users\vyshakh.babji\documents\visual studio 2015\Projects\ConsoleApplication1\ConsoleApplication1\bin\Debug\Newtonsoft.Json.xml
+c:\users\vyshakh.babji\documents\visual studio 2015\Projects\ConsoleApplication1\ConsoleApplication1\bin\Debug\System.Net.Http.Extensions.xml
+c:\users\vyshakh.babji\documents\visual studio 2015\Projects\ConsoleApplication1\ConsoleApplication1\bin\Debug\System.Net.Http.Primitives.xml
+c:\users\vyshakh.babji\documents\visual studio 2015\Projects\ConsoleApplication1\ConsoleApplication1\obj\Debug\ConsoleApplication1.csproj.App.config
+c:\users\vyshakh.babji\documents\visual studio 2015\Projects\ConsoleApplication1\ConsoleApplication1\obj\Debug\ConsoleApplication1.csprojResolveAssemblyReference.cache
+c:\users\vyshakh.babji\documents\visual studio 2015\Projects\ConsoleApplication1\ConsoleApplication1\obj\Debug\ConsoleApplication1.exe
+c:\users\vyshakh.babji\documents\visual studio 2015\Projects\ConsoleApplication1\ConsoleApplication1\obj\Debug\ConsoleApplication1.pdb
+c:\users\vyshakh.babji\documents\visual studio 2015\Projects\ConsoleApplication1\ConsoleApplication1\bin\Debug\BouncyCastle.Crypto.dll
+c:\users\vyshakh.babji\documents\visual studio 2015\Projects\ConsoleApplication1\ConsoleApplication1\bin\Debug\BouncyCastle.Crypto.pdb
