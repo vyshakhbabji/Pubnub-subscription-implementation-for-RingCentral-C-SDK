@@ -97,6 +97,53 @@ namespace ConsoleApplication1
             pubnub.Subscribe<string>(address, DisplaySubscribeReturnMessage, DisplaySubscribeConnectStatusMessage, DisplayErrorMessage);
             System.Console.ReadLine();
         }
+        
+        public void downloadOneRecording(Platform platform, string token)
+        {
+            string filepath = "C:\\Users\\vyshakh.babji\\Desktop\\recording\\1.mp3";
+
+            //call-log api endpoint
+            Request request = new Request("/restapi/v1.0/account/~/extension/~/call-log?withRecording=true");
+            Response response = platform.Get(request);
+            JObject bodyString = response.GetJson();
+
+            //fetch records from call-log
+            JArray records = (JArray)bodyString.GetValue("records");
+
+            //fetch recording data among records and get content uri for recording
+            JToken contentUri = (string)records[0].SelectToken("recording").SelectToken("contentUri");
+
+            // access the content uri from the call-log https://media.devtest.ringcentral.com:443/restapi/v1.0/account/131192004/recording/1333302004/content
+            string url = (string)contentUri;
+            Console.WriteLine(url);
+
+            //make a get request for content uri by passing access token
+            HttpWebRequest requests = System.Net.WebRequest.Create(url) as System.Net.HttpWebRequest;
+            requests.KeepAlive = true;
+            requests.Method = "GET";
+            requests.ContentLength = 0;
+            requests.ContentType = "application/json";
+
+            ////Add access token to Request header
+            requests.Headers.Add("Authorization", String.Format("Bearer {0}", token));
+
+            //Get HttpWebResponse from GET request
+            using (HttpWebResponse httpResponse = requests.GetResponse() as System.Net.HttpWebResponse) { 
+                using (StreamReader reader = new System.IO.StreamReader(httpResponse.GetResponseStream()))
+                {
+                    // throw everything you read into a MemoryStream and get the byte array in the end
+                    var bytes = default(byte[]);
+                    using (var mem = new MemoryStream())
+                    {
+                        reader.BaseStream.CopyTo(mem);
+                        bytes = mem.ToArray();
+                        //write the byte array as .mp3 file
+                        File.WriteAllBytes(filepath, bytes);
+                    }
+                } 
+            }
+        }
+
 
         static void Main(string[] args)
         {
