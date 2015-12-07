@@ -80,9 +80,13 @@ namespace ConsoleApplication1
         {
            
             System.Console.WriteLine(response.GetBody());
+            
+            //adding event filters
             var body = "{\r\n  \"eventFilters\": [ \r\n    \"/restapi/v1.0/account/~/extension/~/presence\", \r\n    \"/restapi/v1.0/account/~/extension/~/message-store\" \r\n  ], \r\n  \"deliveryMode\": { \r\n    \"transportType\": \"PubNub\", \r\n    \"encryption\": \"false\" \r\n  } \r\n}";
             Request request = new Request("/restapi/v1.0/subscription", body);
             response = platform.Post(request);
+            
+            //getSubscription
             JToken bodyString = response.GetJson();
             string encryptionKey = (string)bodyString.SelectToken("deliveryMode").SelectToken("encryptionKey");
             string subscriberKey = (string)bodyString.SelectToken("deliveryMode").SelectToken("subscriberKey");
@@ -90,6 +94,8 @@ namespace ConsoleApplication1
             string secretKey = "<SECRET_KEY>";//deliveryMode.getString("secretKey");
             encryptkey = encryptionKey;
             System.Console.WriteLine(subscriberKey);
+            
+            //Subscribe to Pubnub's subscription channel
             Pubnub pubnub = new Pubnub("", subscriberKey, secretKey);
             pubnub.Subscribe<string>(address, DisplaySubscribeReturnMessage, DisplaySubscribeConnectStatusMessage, DisplayErrorMessage);
             System.Console.ReadLine();
@@ -144,10 +150,12 @@ namespace ConsoleApplication1
 
         static void Main(string[] args)
         {
-            
+            //add appkey, app secret, Username=Sandbox phone number, Extension and Sandbpx password
             var sdk = new SDK("<APP KEY>", "<APP SECRET>", "https://platform.devtest.ringcentral.com/", "1", "1");
             var platform = sdk.GetPlatform();
             Response response = platform.Authorize("<USERNAME>", "<EXT>", "<PASSWORD>", true);
+            
+            //fetch access token
             string accesstoken = (string)response.GetJson().SelectToken("access_token");
             Program p = new Program();
             //subscription
