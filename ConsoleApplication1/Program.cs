@@ -76,12 +76,9 @@ namespace ConsoleApplication1
         {
             Console.WriteLine(pubnubError.StatusCode);
         }
-        void run()
+        void run(Platform platform,Response response)
         {
-            var sdk = new SDK("<APP_KEY>", "<APP_SECRET>", "https://platform.devtest.ringcentral.com/", "", "");
-
-            var platform = sdk.GetPlatform();
-            Response response = platform.Authorize("<USERNAME>", "<EXT>", "<PASSWORD>", true);
+           
             System.Console.WriteLine(response.GetBody());
             var body = "{\r\n  \"eventFilters\": [ \r\n    \"/restapi/v1.0/account/~/extension/~/presence\", \r\n    \"/restapi/v1.0/account/~/extension/~/message-store\" \r\n  ], \r\n  \"deliveryMode\": { \r\n    \"transportType\": \"PubNub\", \r\n    \"encryption\": \"false\" \r\n  } \r\n}";
             Request request = new Request("/restapi/v1.0/subscription", body);
@@ -147,8 +144,18 @@ namespace ConsoleApplication1
 
         static void Main(string[] args)
         {
+            
+            var sdk = new SDK("<APP KEY>", "<APP SECRET>", "https://platform.devtest.ringcentral.com/", "1", "1");
+            var platform = sdk.GetPlatform();
+            Response response = platform.Authorize("<USERNAME>", "<EXT>", "<PASSWORD>", true);
+            string accesstoken = (string)response.GetJson().SelectToken("access_token");
             Program p = new Program();
-            p.run();
+            //subscription
+            p.run(platform,response);
+            
+            //access call-log 
+            //download call-recording
+            p.downloadOneRecording(platform);
         }
     }
 }
