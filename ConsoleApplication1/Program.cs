@@ -101,6 +101,42 @@ namespace ConsoleApplication1
             System.Console.ReadLine();
         }
         
+          public void downloadFaxes(Platform platform, string token)
+        {
+            string url = "https://platform.devtest.ringcentral.com/restapi/v1.0/account/131192004/extension/131192004/message-store/1261827004/content/1261827004";
+
+
+            string filepath = "C:\\Users\\vyshakh.babji\\Desktop\\recording\\fax.pdf";
+
+
+            HttpWebRequest requests = System.Net.WebRequest.Create(url) as System.Net.HttpWebRequest;
+            requests.KeepAlive = true;
+            requests.Method = "GET";
+            requests.ContentLength = 0;
+            //  requests.ContentType = "application/json";
+
+            ////Add access token to Request header
+            requests.Headers.Add("Authorization", String.Format("Bearer {0}", token));
+
+            using (HttpWebResponse httpResponse = requests.GetResponse() as System.Net.HttpWebResponse)
+            {
+                using (StreamReader reader = new System.IO.StreamReader(httpResponse.GetResponseStream()))
+                {
+                    // throw everything you read into a MemoryStream and get the byte array in the end
+                    var bytes = default(byte[]);
+                    using (var mem = new MemoryStream())
+                    {
+                        reader.BaseStream.CopyTo(mem);
+                        bytes = mem.ToArray();
+                        //write the byte array as .mp3 file
+                        File.WriteAllBytes(filepath, bytes);
+                    }
+                }
+            }
+
+
+        }
+        
         public void downloadOneRecording(Platform platform, string token)
         {
             string filepath = "C:\\Users\\vyshakh.babji\\Desktop\\recording\\1.mp3";
